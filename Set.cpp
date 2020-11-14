@@ -10,7 +10,7 @@ Set::Set()
 Set::Set(int *&elements, int count, string nom)
 :name(nom){
 //    cout<<"this is set init"<<endl;
-//    cout<<"this is set initcount"<<count<<endl;
+    //cout<<"this is set initcount"<<count<<endl;
     int temp[count];
     int j=0;
     bool flg;
@@ -26,7 +26,7 @@ Set::Set(int *&elements, int count, string nom)
     for(int i=0;i<j;i++){
 
         elms[i]=temp[i];
-        //cout<<elms[i]<<"this is temp";
+        //cout<<elms[i]<<"this is temp"<<endl;
     }
     delete(elements);
     this->size=j;
@@ -57,12 +57,10 @@ void  Set::printSet() const{
     cout<<'}';
 }
 
-void Set::destroy() { delete(elms); }
-void Set::setName(string name){ this->name=name; }
-string Set::getName() const { return (name); }
-void Set::setElms(int*& elements) { this->elms=elements; }
-int **Set::getElms() { return &elms; }
-int Set::getSize() const { return size; }
+
+
+
+
 
 
 

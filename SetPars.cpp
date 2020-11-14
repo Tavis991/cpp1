@@ -4,9 +4,7 @@
 
 #include <cstdlib>
 #include "SetPars.h"
-SetPars::SetPars() {
-
-}
+SetPars::SetPars(){}
 
 string SetPars::parseName() {
     string temp;
@@ -17,18 +15,19 @@ string SetPars::parseName() {
     return t;
 }
 
-string SetPars::parse2Name(){
+string SetPars::parse2Name(string & nom1, string & nom2){
     string temp;
     string inT;
     getline(cin,temp);
     cin>>t;
     if (t.size()>8) return "0";
     for (int i=0;i<t.size();i++) { if (! isupper(t[i]) ) { return "0"; } }
-    cin>> inT;
+    nom1 = t;
+    cin>>inT;
     if (inT.size()>8) return "0";
     for (int i=0;i<inT.size();i++) { if (! isupper(inT[i]) ) { return "0"; } }
-    t += inT;
-    return t;
+    nom2 = inT;
+    return "1";
 }
 
 int SetPars::parseSet(int *& pointy) {
@@ -40,8 +39,7 @@ int SetPars::parseSet(int *& pointy) {
     int *arr= new int[(temp.size()/2)]; // i want this dynamical aloc, max size of legal arr
     pointy=arr; //assigning aloc to pointer
 
-    if ((const char)temp[0]!='{') {return -1;} //initial conditions
-
+    if ((const char)temp[0]!='{') { return -1; } //initial conditions
     int i=1;
     if (temp.size()==2){
         if (temp[i]=='}'){ return 0;} else{return -1;}

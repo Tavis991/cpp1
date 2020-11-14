@@ -17,11 +17,9 @@ public:
     SetPars();
     string parseName();
     int parseSet(int *& pointy);
-    string parse2Name();
+    string parse2Name(string & nom1, string & nom2);
 private:
     string t;
-
-
 };
 
 

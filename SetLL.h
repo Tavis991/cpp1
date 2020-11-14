@@ -13,21 +13,21 @@ public:
         head=NULL;
         curr=NULL;
     }
-    void append(Set& set);
-    void gotoNext() { if(curr->getNext()) curr = curr->getNext(); }
-    bool hasNext() { if(curr->getNext()) { return true; } return false;}
+    void append(Set* set);
+    bool gotoNext() { if (curr->getNext()) {curr = curr->getNext(); return 0; } return 1;}
+    bool hasNext() { if (curr->getNext()) { return true; } return false;}
     void gotoPrior();
     void gotoBeginning() { curr = head; }
-    void gotoEnd() { while(hasNext()) gotoNext(); }
+    void gotoEnd() { while (hasNext()) gotoNext(); }
     void Destroy();
     void Print();
-    bool isEmpty()  {if (head) { return false;} return true; }
+    bool isEmpty()  {if (head) { return false;}  return true; }
     LLNode* getCurr();
-    void Replace(Set& new_set);
+    void Replace(Set*& new_set);
     LLNode* getHead() { return head; }
-    int delNext(LLNode* prev);
-    void Decap(Set& new_set);
-    LLNode* find(string name);
+    int del (LLNode* del);
+    LLNode* find (string name);
+
 private:
     LLNode* head;
     LLNode* curr;

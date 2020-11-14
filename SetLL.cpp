@@ -4,7 +4,7 @@
 #include "Set.h"
 #include "SetLL.h"
 #include "LLNode.h"
-void SetLL::append(Set &new_set) { /* 1. allocate node */
+void SetLL::append(Set *new_set) { /* 1. allocate node */
 //    cout<<"this is append"<<endl;
 //    new_set->printSet();
     LLNode *newNode = new LLNode(new_set);
@@ -20,14 +20,14 @@ void SetLL::append(Set &new_set) { /* 1. allocate node */
 
 LLNode* SetLL::getCurr(){ return curr;}
 
-void SetLL::Replace(Set& new_set){
-    curr->getNext()->Destroy();
-    curr->getNext()->setData(new_set);
+void SetLL::Replace(Set*& new_set){
+    curr->Destroy();
+    curr->setData(new_set);
 }
-void SetLL::Decap(Set& new_set){
-    head->Destroy();
-    head->setData(new_set);
-}
+//void SetLL::Decap(Set*& new_set){
+//    head->Destroy();
+//    head->setData(new_set);
+//}
 void SetLL::Destroy() {
     gotoBeginning();
     LLNode* temp;
@@ -42,34 +42,38 @@ void SetLL::Destroy() {
 }
 
 void SetLL::Print() {
+    if(isEmpty()) return;
     gotoBeginning();
-    curr->printNod();
-    if ( !hasNext() ) return;
-    while(hasNext()){
-        gotoNext();
-        curr->printNod();
-    }
-    curr->printNod();
+    do { curr->printNod(); }
+    while (!gotoNext());
 }
 
 LLNode * SetLL::find(string name) {
     if (isEmpty()) return NULL;
     gotoBeginning();
-    if(head->getData()->getName()==name){
-        return head;
-    }
-    while(hasNext()) { if (curr->getData()->getName()==name) { return curr; } }
+//    if(head->getData()->getName()==name){
+//        return head;
+//    }
+    do {if (curr->getData()->getName()==name) { return curr; } }
+    while(!gotoNext());
     return NULL;
 }
 
-//int SetLL::delNext(LLNode* prev) {
-//    if ( prev == head ) { head = NULL; return 0; }
-//    else if (!(hasNext() && prev->getNext()hasNext())) { curr->getNext()->Destroy(); curr->nullify(); return 0;}
-//    LLNode* tmp = prev->getNext()->getNext();
-//    prev->getNext()->Destroy();
-//    prev->setNext(tmp);
-//    return 0;
-//}
+int SetLL::del(LLNode* del) {
+    if ( del == head ) { LLNode* tmp = del->getNext();
+    head->Destroy(); head=tmp;  return 0; }
+    else if ( del->getNext() ){
+        LLNode* tmp = del->getNext();
+        gotoPrior();
+        curr->getNext()->Destroy();
+        curr->setNext(tmp);
+        return 0;
+    }
+    gotoPrior();
+    curr->getNext()->Destroy();
+    curr->nullify();
+    return 0;
+}
 
 void SetLL::gotoPrior() {
     LLNode* temp = curr;

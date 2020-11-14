@@ -13,14 +13,13 @@ public:
     Set(int *&elements, int count, string nom);
     void printSet() const;
     void Sort();
-    void destroy();
-    string getName() const;
-    void setElms(int*& elements);
-    int** getElms();
-    void setName(string name);
+    void destroy() { delete(elms); }
+    string getName() const { return (name); }
+    void setElms(int*& elements) { this->elms=elements; }
+    int **getElms() { return &elms; }
+    void setName(string name){ this->name=name; }
     void setSize(int size) { this->size=size; }
-    Set *getNext() const;
-    int getSize() const;
+    int getSize() const { return size; }
 
 private:
     int *elms;

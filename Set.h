@@ -20,6 +20,7 @@ public:
     void setName(string name){ this->name=name; }
     void setSize(int size) { this->size=size; }
     int getSize() const { return size; }
+    void add(int item);
 
 private:
     int *elms;

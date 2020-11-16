@@ -57,6 +57,18 @@ void  Set::printSet() const{
     cout<<'}';
 }
 
+void Set::add(int item) {
+    int* new_arr = new int[size+1];
+    int i;
+    for (i=0; i<size; i++){
+        new_arr[i]=elms[i];
+    }
+    new_arr[i]=item;
+    delete(elms);
+    elms = new_arr;
+    Sort();
+}
+
 
 
 

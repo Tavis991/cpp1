@@ -24,15 +24,17 @@ void SetLL::Replace(Set*& new_set){
 }
 
 void SetLL::Destroy() {
+    if (isEmpty()) return;
+    cout<<"this is setllDEL";
     gotoBeginning();
-    LLNode* temp;
+    LLNode* temp=head;
     head->Destroy();
     delete(head);
-    while(curr->getNext()){
-        temp = curr->getNext();
-        curr->Destroy();
-        delete(curr);
-        curr=temp;
+    while(temp->getNext()){
+        curr = temp->getNext();
+        temp->Destroy();
+        delete(temp);
+        temp=temp;
     }
 }
 
@@ -52,6 +54,7 @@ LLNode * SetLL::find(string name) {
 }
 
 int SetLL::del(LLNode* del) {
+    if (isEmpty()) return 0;
     if ( del == head ) { LLNode* tmp = del->getNext();
     head->Destroy(); head=tmp;  return 0;}
     else if ( del->getNext()){

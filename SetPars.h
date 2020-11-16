@@ -15,11 +15,15 @@ using namespace std;
 class SetPars {
 public:
     SetPars();
-    string parseName();
+   // string parseName();
     int parseSet(int *& pointy);
     string parse2Name(string & nom1, string & nom2);
+    void nullti() {t="";}
+    string parseNameX(bool flag);
+
 private:
     string t;
+
 };
 
 

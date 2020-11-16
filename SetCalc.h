@@ -5,6 +5,7 @@
 #ifndef HW1_SETCALC_H
 #define HW1_SETCALC_H
 
+#include "cmath"
 #include "SetPars.h"
 #include "SetLL.h"
 class SetCalc {
@@ -16,7 +17,7 @@ public:
     int setDel();
     int setIntersect();
     int setUnion();
-    void Destroy();
+    void Destroy() { SetLINKED.Destroy();}
     int powerSet();
 private:
     const string NAMERR;
@@ -27,8 +28,7 @@ private:
     SetLL SetLINKED;
     SetPars parsi;
     int size;
-    //Set* setArray;
-    int powerSetHelper();
+    int powerSetHelper(Set *&given_set, Set *&subset, Set *&pow, int index);
 };
 
 
